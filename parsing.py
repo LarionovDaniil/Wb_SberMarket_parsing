@@ -22,9 +22,8 @@ try:
 
     reviews = open('reviews.txt', 'w')
     len_strings =0
-    # while len_strings < 200 or :
-    #
-    #     len_strings += 1
+    while len_strings < 200:
+        len_strings += 1
     time.sleep(500)
 
 except Exception as ex:
