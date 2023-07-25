@@ -26,3 +26,5 @@ def make_word_cloud():
     return 0
 
 make_word_cloud('sber')
+
+# test
