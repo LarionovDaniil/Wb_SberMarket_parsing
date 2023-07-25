@@ -2,9 +2,7 @@ import telebot
 
 from parsing import *
 from word_cloud import *
-
-BOT_TOKEN = '6636800698:AAENTI1cRJoP6D55AnBEzU8JRnjCmrDrbdU'
-
+from bot_token import BOT_TOKEN
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
