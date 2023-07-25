@@ -33,7 +33,7 @@ def wildberries_parsing(link):
         for _ in range(100):
             driver.find_element(By.TAG_NAME, value='body').send_keys(Keys.PAGE_DOWN)
 
-        with open('reviews_wb.csv', 'w', encoding='utf-8') as file:
+        with open('reviews.csv', 'w', encoding='utf-8') as file:
             for line in driver.find_elements(By.CLASS_NAME, 'feedback__text'):
                 # print(line.text+'$$')
                 file.write(line.text+'$')
@@ -84,8 +84,7 @@ def sber_parsing(link):
     return 0
 
 
-def init():
-    url = input()
+def init(url):
     if url[12:23] == 'wildberries':
         wildberries_parsing(url)
     elif url[8:12] == 'sber':
@@ -94,4 +93,5 @@ def init():
         print('Введите ссылку именно на товар с Wildberries')
     return 0
 
-init()
+
+# подтверждение 18 лет
