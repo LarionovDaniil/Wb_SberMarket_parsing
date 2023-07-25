@@ -27,4 +27,4 @@ def make_word_cloud():
 
 make_word_cloud('sber')
 
-# test
+# test lavovma
