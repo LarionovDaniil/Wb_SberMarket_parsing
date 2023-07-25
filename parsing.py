@@ -55,45 +55,29 @@ def sber_parsing(link):
     driver = webdriver.Chrome(service=s)
 
     try:
-        f = open('reviews_sber.csv', 'w', encoding='utf-8')
+        f = open('reviews.csv', 'w', encoding='utf-8')
         driver.maximize_window()
         driver.get(link)
         time.sleep(0.5)
-        driver.find_element(By.CLASS_NAME, 'reviews-rating__reviews-count').click()
+        # driver.find_element(By.CLASS_NAME, 'reviews-rating__reviews-count').click()
+        driver.find_element(By.LINK_TEXT, 'Посмотреть еще отзывы').click()
         time.sleep(0.5)
-        count = 0
         for i in range(2, 10):
             # for line in driver.find_elements(By.CLASS_NAME, 'review-item__body-text'):
             #     print(line.text+'$')
             try:
                 for line in driver.find_elements(By.CLASS_NAME, 'review-item__body-text'):
                     f.write(line.text+'$')
-                    count += 1
                 driver.find_element(By.LINK_TEXT, str(i)).click()
                 time.sleep(0.5)
-                print(count)
             except:
                 pass
-        # driver.find_element(By.CLASS_NAME, 'product-review__count-review').click()
-        # time.sleep(1)
-        # driver.find_element(By.TAG_NAME, value='body').send_keys(Keys.PAGE_DOWN)
-        # time.sleep(0.5)
-        # driver.find_element(By.LINK_TEXT, 'Смотреть все отзывы').click()
-        # time.sleep(1)
-        #
-        # for _ in range(100):
-        #     driver.find_element(By.TAG_NAME, value='body').send_keys(Keys.PAGE_DOWN)
-        #
-        # with open('reviews.csv', 'w', encoding='utf-8') as file:
-        #     for line in driver.find_elements(By.CLASS_NAME, 'feedback__text'):
-        #         # print(line.text+'$$')
-        #         file.write(line.text+'$')
 
         time.sleep(1)
 
     except Exception as ex:
         print(ex)
-        print('Введите полную ссылку на товар с Wildberries')
+        print('Введите полную ссылку на товар с Sbermegamarket')
     finally:
         # driver.close()
         driver.quit()
