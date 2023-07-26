@@ -15,6 +15,7 @@ def make_word_cloud():
     stop_words = set(stop_words.split('\n'))
 
     reviews_kirill = list(map(lambda x: ' '.join(re.sub(r'[^а-яё ]', ' ', x).split()), reviews_list))
+    print(len(reviews_kirill))
     reviews_clean = ' '.join(list(map(lambda x: ' '.join(set(x.split()) - stop_words), reviews_kirill)))
     reviews_lemm = ''.join(m.lemmatize(reviews_clean))
     need_or_not = ' '.join(reviews_lemm.split())

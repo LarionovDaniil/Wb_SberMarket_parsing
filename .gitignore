@@ -1,0 +1,8 @@
+.idea
+venv/
+__pycache__/
+webdriver/
+bot_token.py
+reviews.csv
+reviews.csv
+wordcloud.png
