@@ -4,7 +4,10 @@ import re
 from pymystem3 import Mystem
 
 def make_word_cloud():
-
+    """
+    Read comments from file and make Wordcloud
+    :return: 0
+    """
     m = Mystem()
     reviews = pd.read_csv('reviews.csv', sep='$').T
 
@@ -25,4 +28,3 @@ def make_word_cloud():
 
     return 0
 
-# убрать существительные
