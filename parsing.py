@@ -81,9 +81,11 @@ def init(url):
     :param url: url to marketplace
     :return: error codes or 0 if parsing suceed
     """
+    print(url)
+    print(url[8:12])
     if url[12:23] == 'wildberries':
         error_code = wb_parsing(url)
-    elif url[8:12] == 'sber':
+    elif url[8:12] == 'mega':
         error_code = sber_parsing(url)
     else:
         error_code = 1

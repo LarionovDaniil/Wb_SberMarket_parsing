@@ -6,10 +6,10 @@ from pymystem3 import Mystem
 
 def kirill_list():
     reviews = pd.read_csv('reviews.csv', sep='$').T
-
+    all_reviews = reviews.index.to_list()[:-1]
     reviews_list = reviews.index.map(str.lower).to_list()[:-1]
     reviews_kirill = list(map(lambda x: ' '.join(re.sub(r'[^а-яё ]', ' ', x).split()), reviews_list))
-    return reviews_kirill
+    return reviews_kirill, all_reviews
 
 
 def make_word_cloud(words_kirill_only):
@@ -29,7 +29,6 @@ def make_word_cloud(words_kirill_only):
     for word in reviews_clean.split():
         if word[-1] == 'o' or word[-2:] in okonch or word == 'брак':
             pril_nar.append(word)
-    # print(pril_nar)
     reviews_clean = ' '.join(pril_nar)
     reviews_lemm = ''.join(m.lemmatize(reviews_clean))
     need_or_not = ' '.join(reviews_lemm.split())

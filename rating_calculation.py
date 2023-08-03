@@ -1,6 +1,3 @@
-# from dostoevsky.tokenization import RegexTokenizer
-# from dostoevsky.models import FastTextSocialNetworkModel
-
 import numpy as np
 import torch
 from transformers import AutoModelForSequenceClassification
@@ -22,11 +19,10 @@ def predict(text):
 
 def rating(reviews):
     predictions = predict(reviews)
-    positive = np.count_nonzero(predictions == 1)
-    negative = np.count_nonzero(predictions == 2)
-    neutral = np.count_nonzero(predictions == 0)
+    positive = np.where(predictions == 1)[0]
+    negative = np.where(predictions == 2)[0]
+    neutral = np.where(predictions == 0)[0]
     length = predictions.size
 
-    return positive,negative,neutral,length
+    return positive, negative, neutral, length
 
-# 44 с
