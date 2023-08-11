@@ -14,8 +14,6 @@ def predict(text):
     predicted = torch.argmax(predicted, dim=1).numpy()
     return predicted
 
-# rate = {0:'NEUTRAL', 1:'POSITIVE', 2:'NEGATIVE'}
-# print(reviews_kirill_only)
 
 def rating(reviews):
     predictions = predict(reviews)

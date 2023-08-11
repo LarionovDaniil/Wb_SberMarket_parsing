@@ -9,6 +9,10 @@ def kirill_list():
     all_reviews = reviews.index.to_list()[:-1]
     reviews_list = reviews.index.map(str.lower).to_list()[:-1]
     reviews_kirill = list(map(lambda x: ' '.join(re.sub(r'[^а-яё ]', ' ', x).split()), reviews_list))
+
+    reviews_kirill = list(filter(lambda x: len(x.split()) > 3, reviews_kirill))
+    all_reviews = list(filter(lambda x: len(x.split()) > 3, all_reviews))
+
     return reviews_kirill, all_reviews
 
 

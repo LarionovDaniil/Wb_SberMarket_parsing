@@ -14,7 +14,8 @@ errors = {1: 'Некорретная ссылка', 2: 'Некорректная
 chat_id = 0
 @bot.message_handler(commands=['start'])
 def category(message):
-    bot.send_message(message.chat.id, 'Введите полную ссылку на товар с Wildberries или SberMegaMarket')
+    bot.send_message(message.chat.id, 'Введите полную ссылку на товар с Wildberries или SberMegaMarket, '
+                                      'чтобы получить анализ комментариев')
 
 @bot.message_handler(content_types=['text'])
 def message_reply(message):
@@ -36,16 +37,22 @@ def message_reply(message):
                                           'Чем чаще слово встречается, тем больший размер оно принимает в облаке.')
         first = 1
         bot.send_message(chat_id, 'Нейросеть начинает анализировать отзывы, процесс может занять до 3 минут')
+
+        random_rev = list(np.random.choice(all_reviews, size=3, replace=False))
+        str_random_rev = '\n'.join(random_rev)
+        bot.send_message(chat_id, f'Вот несколько случайных отзывов: {str_random_rev}')
+
         positive, negative, neutral, length = rating(reviews_kirill_only)
-        rating_result = f'% позитивных отзывов - {positive.size/length:.1%}, ' \
-                        f'отрицательных - {negative.size/length:.1%}, ' \
-                        f'нейтральных - {neutral.size/length:.1%}'
+        rating_result = f'Доля позитивных отзывов - {positive.size/length:.1%}\n' \
+                        f'Отрицательных - {negative.size/length:.1%}\n' \
+                        f'Нейтральных - {neutral.size/length:.1%}'
 
         bot.send_message(chat_id, rating_result)
 
 
         positive_rand = list(np.random.choice(positive, size=3, replace=False))
         negative_rand = list(np.random.choice(negative, size=3, replace=False))
+
 
         str_pos = '\n'.join(np.take(all_reviews, positive_rand))
         str_neg = '\n'.join(np.take(all_reviews, negative_rand))
